@@ -25,7 +25,7 @@ final class CommentFinderTest extends TestCase
         return [
             [
                 [
-                    '// This is a comment'.PHP_EOL,
+                    "// This is a comment\n",
                     '/* This is another comment */',
                 ],
                 '
