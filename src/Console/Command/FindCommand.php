@@ -15,6 +15,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use Symfony\Component\Stopwatch\Stopwatch;
 
 final class FindCommand extends Command
 {
@@ -22,6 +23,7 @@ final class FindCommand extends Command
     private $commentNormalizer;
     private $commentTypeDetector;
     private $commentClassifier;
+    private $stopwatch;
 
     public function __construct()
     {
@@ -31,6 +33,7 @@ final class FindCommand extends Command
         $this->commentNormalizer = new Normalizer();
         $this->commentTypeDetector = new TypeDetector();
         $this->commentClassifier = new Classifier(new Config());
+        $this->stopwatch = new Stopwatch();
     }
 
     protected function configure(): void
@@ -54,17 +57,30 @@ final class FindCommand extends Command
 
         $violations = [];
 
+        $this->stopwatch->start('find');
+
         foreach ($finder as $file) {
             $violations = array_merge($violations, $this->getViolations($file));
         }
 
+        $event = $this->stopwatch->stop('find');
+
+        $timeInSeconds = $event->getDuration() / 1000;
+        $memoryInMegabytes = $event->getMemory() / 1024 / 1024;
+
         if (empty($violations)) {
+            $output->writeln("Time: {$timeInSeconds} seconds");
+            $output->writeln("Memory: {$memoryInMegabytes} MB");
+
             return 0;
         }
 
         foreach ($violations as $violation) {
             $output->writeln("Potentially useless comment found in {$violation->getFile()->getPathname()} on line {$violation->getComment()->getLine()}");
         }
+
+        $output->writeln("Time: {$timeInSeconds} seconds");
+        $output->writeln("Memory: {$memoryInMegabytes} MB");
 
         return 1;
     }
