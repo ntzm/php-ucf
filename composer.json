@@ -10,6 +10,7 @@
     ],
     "require": {
         "php": ">= 7.1",
+        "ext-tokenizer": "*",
         "symfony/console": "^3.3",
         "symfony/finder": "^3.3",
         "symfony/stopwatch": "^3.3"
