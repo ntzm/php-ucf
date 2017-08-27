@@ -1,6 +1,7 @@
 {
     "name": "ntzm/useless-comment-finder",
-    "type": "library",
+    "type": "application",
+    "description": "A tool to find potentially useless comments in PHP code",
     "license": "MIT",
     "authors": [
         {
@@ -31,5 +32,9 @@
     },
     "bin": [
         "bin/useless-comment-finder"
-    ]
+    ],
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
 }
