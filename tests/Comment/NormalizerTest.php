@@ -1,12 +1,12 @@
 <?php
 
-namespace Ntzm\Tests\UselessCommentFinder;
+namespace Ntzm\Tests\UselessCommentFinder\Comment;
 
 use Ntzm\UselessCommentFinder\Comment\Normalizer;
 use Ntzm\UselessCommentFinder\Comment\InvalidCommentException;
 use PHPUnit\Framework\TestCase;
 
-final class CommentNormalizerTest extends TestCase
+final class NormalizerTest extends TestCase
 {
     /**
      * @param string $expected

@@ -1,12 +1,12 @@
 <?php
 
-namespace Ntzm\Tests\UselessCommentFinder;
+namespace Ntzm\Tests\UselessCommentFinder\Comment;
 
 use Ntzm\UselessCommentFinder\Comment\Comment;
 use Ntzm\UselessCommentFinder\Comment\TypeDetector;
 use PHPUnit\Framework\TestCase;
 
-final class CommentTypeDetectorTest extends TestCase
+final class TypeDetectorTest extends TestCase
 {
     /**
      * @param string $comment

@@ -1,11 +1,11 @@
 <?php
 
-namespace Ntzm\Tests\UselessCommentFinder;
+namespace Ntzm\Tests\UselessCommentFinder\Comment;
 
 use Ntzm\UselessCommentFinder\Comment\Finder;
 use PHPUnit\Framework\TestCase;
 
-final class CommentFinderTest extends TestCase
+final class FinderTest extends TestCase
 {
     /**
      * @param array  $expected
