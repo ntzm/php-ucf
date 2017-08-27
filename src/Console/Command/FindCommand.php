@@ -2,12 +2,14 @@
 
 namespace Ntzm\UselessCommentFinder\Console\Command;
 
-use Ntzm\UselessCommentFinder\Classifier;
+use Ntzm\UselessCommentFinder\Classifier\DocCommentClassifier;
+use Ntzm\UselessCommentFinder\Classifier\EmptyCommentClassifier;
+use Ntzm\UselessCommentFinder\Classifier\NoteClassifier;
+use Ntzm\UselessCommentFinder\Classifier\ShortCommentClassifier;
 use Ntzm\UselessCommentFinder\Comment\Comment;
 use Ntzm\UselessCommentFinder\Comment\Finder as CommentFinder;
 use Ntzm\UselessCommentFinder\Comment\Normalizer;
 use Ntzm\UselessCommentFinder\Comment\TypeDetector;
-use Ntzm\UselessCommentFinder\Config;
 use Ntzm\UselessCommentFinder\Violation;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -22,8 +24,8 @@ final class FindCommand extends Command
     private $commentFinder;
     private $commentNormalizer;
     private $commentTypeDetector;
-    private $commentClassifier;
     private $stopwatch;
+    private $classifiers = [];
 
     public function __construct()
     {
@@ -32,8 +34,18 @@ final class FindCommand extends Command
         $this->commentFinder = new CommentFinder();
         $this->commentNormalizer = new Normalizer();
         $this->commentTypeDetector = new TypeDetector();
-        $this->commentClassifier = new Classifier(new Config());
         $this->stopwatch = new Stopwatch();
+
+        $classifiers = [
+            DocCommentClassifier::class,
+            EmptyCommentClassifier::class,
+            NoteClassifier::class,
+            ShortCommentClassifier::class,
+        ];
+
+        foreach ($classifiers as $classifier) {
+            $this->classifiers[] = new $classifier();
+        }
     }
 
     protected function configure(): void
@@ -98,8 +110,22 @@ final class FindCommand extends Command
                 $this->commentTypeDetector->detect($token[1])
             );
 
-            if ($this->commentClassifier->isUseless($comment)) {
-                $violations[] = new Violation($comment, $file);
+            foreach ($this->classifiers as $classifier) {
+                $isUseless = $classifier->isUseless($comment);
+
+                if ($isUseless === null) {
+                    continue;
+                }
+
+                if ($isUseless === true) {
+                    $violations[] = new Violation($comment, $file);
+
+                    continue 2;
+                }
+
+                if ($isUseless === false) {
+                    continue 2;
+                }
             }
         }
 
