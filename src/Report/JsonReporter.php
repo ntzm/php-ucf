@@ -2,26 +2,23 @@
 
 namespace Ntzm\UselessCommentFinder\Report;
 
+use Ntzm\UselessCommentFinder\Violation;
+
 final class JsonReporter implements Reporter
 {
     public function generate(Summary $summary): string
     {
-        $result = [
+        return json_encode([
             'stats' => [
                 'time' => $summary->getTimeInMilliseconds(),
                 'memory' => $summary->getMemoryInBytes(),
             ],
-            'violations' => [],
-        ];
-
-        /** @var \Ntzm\UselessCommentFinder\Violation $violation */
-        foreach ($summary->getViolations() as $violation) {
-            $result['violations'][] = [
-                'file' => $violation->getFile()->getPathname(),
-                'line' => $violation->getComment()->getLine(),
-            ];
-        }
-
-        return json_encode($result, JSON_PRETTY_PRINT);
+            'violations' => array_map(function (Violation $violation) {
+                return [
+                    'file' => $violation->getFile()->getRealPath(),
+                    'line' => $violation->getComment()->getLine(),
+                ];
+            }, $summary->getViolations()),
+        ], JSON_PRETTY_PRINT);
     }
 }
