@@ -10,10 +10,14 @@ use Ntzm\UselessCommentFinder\Comment\Comment;
 use Ntzm\UselessCommentFinder\Comment\Finder as CommentFinder;
 use Ntzm\UselessCommentFinder\Comment\Normalizer;
 use Ntzm\UselessCommentFinder\Comment\TypeDetector;
+use Ntzm\UselessCommentFinder\Report\JsonReporter;
+use Ntzm\UselessCommentFinder\Report\Summary;
+use Ntzm\UselessCommentFinder\Report\TextReporter;
 use Ntzm\UselessCommentFinder\Violation;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
@@ -21,6 +25,11 @@ use Symfony\Component\Stopwatch\Stopwatch;
 
 final class FindCommand extends Command
 {
+    private const REPORT_FORMAT_MAP = [
+        'txt' => TextReporter::class,
+        'json' => JsonReporter::class,
+    ];
+
     private $commentFinder;
     private $commentNormalizer;
     private $commentTypeDetector;
@@ -54,6 +63,7 @@ final class FindCommand extends Command
             ->setName('find')
             ->setDefinition([
                 new InputArgument('path', InputArgument::IS_ARRAY, 'The path.'),
+                new InputOption('format', '', InputOption::VALUE_REQUIRED, 'To output results in other formats.'),
             ])
             ->setDescription('Finds useless comments')
         ;
@@ -62,6 +72,12 @@ final class FindCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $path = $input->getArgument('path');
+        $format = $input->getOption('format') ?? 'txt';
+
+        $reporterClass = self::REPORT_FORMAT_MAP[$format];
+
+        /** @var \Ntzm\UselessCommentFinder\Report\Reporter $reporter */
+        $reporter = new $reporterClass();
 
         $finder = new Finder();
 
@@ -77,24 +93,11 @@ final class FindCommand extends Command
 
         $event = $this->stopwatch->stop('find');
 
-        $timeInSeconds = $event->getDuration() / 1000;
-        $memoryInMegabytes = $event->getMemory() / 1024 / 1024;
+        $summary = new Summary($violations, $event->getDuration(), $event->getMemory());
 
-        if (empty($violations)) {
-            $output->writeln("Time: {$timeInSeconds} seconds");
-            $output->writeln("Memory: {$memoryInMegabytes} MB");
+        $output->write($reporter->generate($summary));
 
-            return 0;
-        }
-
-        foreach ($violations as $violation) {
-            $output->writeln("Potentially useless comment found in {$violation->getFile()->getPathname()} on line {$violation->getComment()->getLine()}");
-        }
-
-        $output->writeln("Time: {$timeInSeconds} seconds");
-        $output->writeln("Memory: {$memoryInMegabytes} MB");
-
-        return 1;
+        return empty($violations) ? 0 : 1;
     }
 
     private function getViolations(SplFileInfo $file): array
