@@ -26,6 +26,7 @@ final class TypeDetectorTest extends TestCase
             ['//foo'],
             ['// foo'],
             ['//    foo'],
+            ['//'],
         ];
     }
 
@@ -47,6 +48,9 @@ final class TypeDetectorTest extends TestCase
             ['/*foo*/'],
             ['/* foo */'],
             ['/*     foo    */'],
+            ['/**/'],
+            ['/***/'],
+            ['/****/'],
         ];
     }
 
@@ -66,8 +70,15 @@ final class TypeDetectorTest extends TestCase
     {
         return [
             ['/** foo*/'],
+            ['/** foo*/'],
             ['/** foo */'],
             ['/**     foo    */'],
+            ['/** */'],
+            [
+                '/**
+                  * foo
+                  */',
+            ],
         ];
     }
 }

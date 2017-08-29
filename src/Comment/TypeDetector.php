@@ -10,7 +10,7 @@ final class TypeDetector
             return Comment::TYPE_SINGLE_LINE;
         }
 
-        if (strpos($comment, '/**') === 0) {
+        if (preg_match('/\/\*\*\s/', $comment)) {
             return Comment::TYPE_DOC;
         }
 

@@ -27,6 +27,8 @@ final class NormalizerTest extends TestCase
             ['foo', '//foo'],
             ['foo', '// foo'],
             ['foo', '//     foo     '],
+            ['', '//'],
+            ['', '//   '],
         ];
     }
 
@@ -49,6 +51,9 @@ final class NormalizerTest extends TestCase
             ['foo', '/*foo*/'],
             ['foo', '/* foo */'],
             ['foo', '/*     foo      */'],
+            ['', '/**/'],
+            ['', '/* */'],
+            ['', '/*        */'],
         ];
     }
 
@@ -68,10 +73,10 @@ final class NormalizerTest extends TestCase
     public function provideDocComments(): array
     {
         return [
-            ['foo', '/**foo*/'],
+            ['foo', '/** foo*/'],
             ['foo', '/** foo */'],
             ["foo\nbar\nbaz", "/**\n * foo\n * bar\n * baz\n */"],
-            ["foo\nbar\nbaz", "/**foo\n * bar\n * baz\n */"],
+            ["foo\nbar\nbaz", "/** foo\n * bar\n * baz\n */"],
             ["foo\nbar\nbaz", "/** foo  \n   *   bar  \n   *  baz   \n */"],
         ];
     }

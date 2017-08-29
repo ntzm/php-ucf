@@ -27,15 +27,23 @@ final class FinderTest extends TestCase
                 [
                     "// This is a comment\n",
                     '/* This is another comment */',
+                    '/** This is the final comment */',
                 ],
-                '
-                <?php
-                
+                '<?php
+
                 // This is a comment
                 echo "foo // bar";
-                
+
                 echo \'foo // bar\';
                 /* This is another comment */
+               	/** This is the final comment */
+                ',
+            ],
+            [
+                [],
+                '<?php
+
+                echo "hi";
                 ',
             ],
         ];
