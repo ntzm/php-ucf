@@ -3,6 +3,7 @@
 namespace Ntzm\Tests\UselessCommentFinder\Comment;
 
 use Ntzm\UselessCommentFinder\Comment\Comment;
+use Ntzm\UselessCommentFinder\Comment\InvalidCommentException;
 use Ntzm\UselessCommentFinder\Comment\TypeDetector;
 use PHPUnit\Framework\TestCase;
 
@@ -51,6 +52,7 @@ final class TypeDetectorTest extends TestCase
             ['/**/'],
             ['/***/'],
             ['/****/'],
+            ['/**foo*/'],
         ];
     }
 
@@ -74,11 +76,32 @@ final class TypeDetectorTest extends TestCase
             ['/** foo */'],
             ['/**     foo    */'],
             ['/** */'],
-            [
-                '/**
-                  * foo
-                  */',
-            ],
+            ["/** \n * foo\n */"],
+            ["/**\n * foo\n */"],
+            ["/**\r\n * foo\r\n */"],
+        ];
+    }
+
+    /**
+     * @param string $comment
+     *
+     * @dataProvider provideInvalidComments
+     */
+    public function testInvalidComment(string $comment): void
+    {
+        $this->expectException(InvalidCommentException::class);
+
+        (new TypeDetector())->detect($comment);
+    }
+
+    public function provideInvalidComments(): array
+    {
+        return [
+            ['hello'],
+            ['<?php echo "hi";'],
+            ['foo // bar'],
+            ['foo /* bar */'],
+            ['foo /** bar */'],
         ];
     }
 }
