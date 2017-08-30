@@ -80,8 +80,11 @@ final class NormalizerTest extends TestCase
             ['foo', '/** foo*/'],
             ['foo', '/** foo */'],
             ["foo\nbar\nbaz", "/**\n * foo\n * bar\n * baz\n */"],
+            ["foo\nbar\nbaz", "/**\r\n * foo\r\n * bar\r\n * baz\r\n */"],
             ["foo\nbar\nbaz", "/** foo\n * bar\n * baz\n */"],
+            ["foo\nbar\nbaz", "/** foo\r\n * bar\r\n * baz\r\n */"],
             ["foo\nbar\nbaz", "/** foo  \n   *   bar  \n   *  baz   \n */"],
+            ["foo\nbar\nbaz", "/** foo  \r\n   *   bar  \r\n   *  baz   \r\n */"],
         ];
     }
 

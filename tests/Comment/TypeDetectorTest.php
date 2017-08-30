@@ -77,6 +77,8 @@ final class TypeDetectorTest extends TestCase
             ['/**     foo    */'],
             ['/** */'],
             ["/** \n * foo\n */"],
+            ["/**\n * foo\n */"],
+            ["/**\r\n * foo\r\n */"],
         ];
     }
 
