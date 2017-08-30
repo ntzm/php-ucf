@@ -29,6 +29,8 @@ final class NormalizerTest extends TestCase
             ['foo', '//     foo     '],
             ['', '//'],
             ['', '//   '],
+            ['/* foo */', '// /* foo */'],
+            ['/* foo */', '///* foo */'],
         ];
     }
 
@@ -54,6 +56,8 @@ final class NormalizerTest extends TestCase
             ['', '/**/'],
             ['', '/* */'],
             ['', '/*        */'],
+            ['// foo', '/*// foo*/'],
+            ['//    foo', '/* //    foo */'],
         ];
     }
 
