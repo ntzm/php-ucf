@@ -1,6 +1,6 @@
 <?php
 
-namespace Ntzm\UselessCommentFinder\Comment;
+namespace Ntzm\PhpUcf\Comment;
 
 use Exception;
 

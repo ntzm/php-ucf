@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-use Ntzm\UselessCommentFinder\Console\Application;
+use Ntzm\PhpUcf\Console\Application;
 
 if (file_exists($file = __DIR__.'/../../../autoload.php')) {
     require $file;

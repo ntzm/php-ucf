@@ -1,6 +1,6 @@
 <?php
 
-namespace Ntzm\UselessCommentFinder\Report;
+namespace Ntzm\PhpUcf\Report;
 
 interface Reporter
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Ntzm\Tests\UselessCommentFinder\Comment;
+namespace Ntzm\Tests\PhpUcf\Comment;
 
-use Ntzm\UselessCommentFinder\Comment\Finder;
+use Ntzm\PhpUcf\Comment\Finder;
 use PHPUnit\Framework\TestCase;
 
 final class FinderTest extends TestCase

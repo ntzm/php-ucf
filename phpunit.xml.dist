@@ -13,7 +13,7 @@
          verbose="true"
 >
     <testsuites>
-        <testsuite name="Useless Comment Finder Test Suite">
+        <testsuite name="PHP UCF Test Suite">
             <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>

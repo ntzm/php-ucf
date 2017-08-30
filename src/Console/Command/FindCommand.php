@@ -1,19 +1,19 @@
 <?php
 
-namespace Ntzm\UselessCommentFinder\Console\Command;
+namespace Ntzm\PhpUcf\Console\Command;
 
-use Ntzm\UselessCommentFinder\Classifier\DocCommentClassifier;
-use Ntzm\UselessCommentFinder\Classifier\EmptyCommentClassifier;
-use Ntzm\UselessCommentFinder\Classifier\NoteClassifier;
-use Ntzm\UselessCommentFinder\Classifier\ShortCommentClassifier;
-use Ntzm\UselessCommentFinder\Comment\Comment;
-use Ntzm\UselessCommentFinder\Comment\Finder as CommentFinder;
-use Ntzm\UselessCommentFinder\Comment\Normalizer;
-use Ntzm\UselessCommentFinder\Comment\TypeDetector;
-use Ntzm\UselessCommentFinder\Report\JsonReporter;
-use Ntzm\UselessCommentFinder\Report\Summary;
-use Ntzm\UselessCommentFinder\Report\TextReporter;
-use Ntzm\UselessCommentFinder\Violation;
+use Ntzm\PhpUcf\Classifier\DocCommentClassifier;
+use Ntzm\PhpUcf\Classifier\EmptyCommentClassifier;
+use Ntzm\PhpUcf\Classifier\NoteClassifier;
+use Ntzm\PhpUcf\Classifier\ShortCommentClassifier;
+use Ntzm\PhpUcf\Comment\Comment;
+use Ntzm\PhpUcf\Comment\Finder as CommentFinder;
+use Ntzm\PhpUcf\Comment\Normalizer;
+use Ntzm\PhpUcf\Comment\TypeDetector;
+use Ntzm\PhpUcf\Report\JsonReporter;
+use Ntzm\PhpUcf\Report\Summary;
+use Ntzm\PhpUcf\Report\TextReporter;
+use Ntzm\PhpUcf\Violation;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -76,7 +76,7 @@ final class FindCommand extends Command
 
         $reporterClass = self::REPORT_FORMAT_MAP[$format];
 
-        /** @var \Ntzm\UselessCommentFinder\Report\Reporter $reporter */
+        /** @var \Ntzm\PhpUcf\Report\Reporter $reporter */
         $reporter = new $reporterClass();
 
         $finder = new Finder();

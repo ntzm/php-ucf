@@ -1,9 +1,9 @@
 <?php
 
-namespace Ntzm\Tests\UselessCommentFinder\Comment;
+namespace Ntzm\Tests\PhpUcf\Comment;
 
-use Ntzm\UselessCommentFinder\Comment\Normalizer;
-use Ntzm\UselessCommentFinder\Comment\InvalidCommentException;
+use Ntzm\PhpUcf\Comment\Normalizer;
+use Ntzm\PhpUcf\Comment\InvalidCommentException;
 use PHPUnit\Framework\TestCase;
 
 final class NormalizerTest extends TestCase

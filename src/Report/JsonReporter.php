@@ -1,8 +1,8 @@
 <?php
 
-namespace Ntzm\UselessCommentFinder\Report;
+namespace Ntzm\PhpUcf\Report;
 
-use Ntzm\UselessCommentFinder\Violation;
+use Ntzm\PhpUcf\Violation;
 
 final class JsonReporter implements Reporter
 {

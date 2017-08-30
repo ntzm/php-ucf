@@ -1,10 +1,10 @@
 <?php
 
-namespace Ntzm\Tests\UselessCommentFinder\Comment;
+namespace Ntzm\Tests\PhpUcf\Comment;
 
-use Ntzm\UselessCommentFinder\Comment\Comment;
-use Ntzm\UselessCommentFinder\Comment\InvalidCommentException;
-use Ntzm\UselessCommentFinder\Comment\TypeDetector;
+use Ntzm\PhpUcf\Comment\Comment;
+use Ntzm\PhpUcf\Comment\InvalidCommentException;
+use Ntzm\PhpUcf\Comment\TypeDetector;
 use PHPUnit\Framework\TestCase;
 
 final class TypeDetectorTest extends TestCase

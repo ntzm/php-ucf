@@ -1,6 +1,6 @@
 <?php
 
-namespace Ntzm\UselessCommentFinder\Report;
+namespace Ntzm\PhpUcf\Report;
 
 final class TextReporter implements Reporter
 {
@@ -8,7 +8,7 @@ final class TextReporter implements Reporter
     {
         $lines = [];
 
-        /** @var \Ntzm\UselessCommentFinder\Violation $violation */
+        /** @var \Ntzm\PhpUcf\Violation $violation */
         foreach ($summary->getViolations() as $violation) {
             $lines[] = "Potentially useless comment found in {$violation->getFile()->getPathname()} on line {$violation->getComment()->getLine()}";
         }

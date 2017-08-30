@@ -1,8 +1,8 @@
 <?php
 
-namespace Ntzm\UselessCommentFinder\Classifier;
+namespace Ntzm\PhpUcf\Classifier;
 
-use Ntzm\UselessCommentFinder\Comment\Comment;
+use Ntzm\PhpUcf\Comment\Comment;
 
 final class EmptyCommentClassifier implements Classifier
 {

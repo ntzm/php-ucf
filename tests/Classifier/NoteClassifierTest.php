@@ -1,9 +1,9 @@
 <?php
 
-namespace Ntzm\Tests\UselessCommentFinder\Classifier;
+namespace Ntzm\Tests\PhpUcf\Classifier;
 
-use Ntzm\UselessCommentFinder\Classifier\NoteClassifier;
-use Ntzm\UselessCommentFinder\Comment\Comment;
+use Ntzm\PhpUcf\Classifier\NoteClassifier;
+use Ntzm\PhpUcf\Comment\Comment;
 use PHPUnit\Framework\TestCase;
 
 final class NoteClassifierTest extends TestCase

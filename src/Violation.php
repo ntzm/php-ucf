@@ -1,8 +1,8 @@
 <?php
 
-namespace Ntzm\UselessCommentFinder;
+namespace Ntzm\PhpUcf;
 
-use Ntzm\UselessCommentFinder\Comment\Comment;
+use Ntzm\PhpUcf\Comment\Comment;
 use Symfony\Component\Finder\SplFileInfo;
 
 final class Violation

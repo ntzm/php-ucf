@@ -1,8 +1,8 @@
 <?php
 
-namespace Ntzm\UselessCommentFinder\Console;
+namespace Ntzm\PhpUcf\Console;
 
-use Ntzm\UselessCommentFinder\Console\Command\FindCommand;
+use Ntzm\PhpUcf\Console\Command\FindCommand;
 use Symfony\Component\Console\Application as BaseApplication;
 
 final class Application extends BaseApplication

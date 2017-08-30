@@ -1,5 +1,5 @@
 {
-    "name": "ntzm/useless-comment-finder",
+    "name": "ntzm/php-ucf",
     "type": "application",
     "description": "A tool to find potentially useless comments in PHP code",
     "license": "MIT",
@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Ntzm\\UselessCommentFinder\\": "src/"
+            "Ntzm\\PhpUcf\\": "src/"
         }
     },
     "require-dev": {
@@ -28,11 +28,11 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Ntzm\\Tests\\UselessCommentFinder\\": "tests/"
+            "Ntzm\\Tests\\PhpUcf\\": "tests/"
         }
     },
     "bin": [
-        "bin/useless-comment-finder"
+        "bin/php-ucf"
     ],
     "config": {
         "optimize-autoloader": true,
