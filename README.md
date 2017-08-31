@@ -5,7 +5,7 @@
 [![Code Climate](https://codeclimate.com/github/ntzm/useless-comment-finder/badges/gpa.svg)](https://codeclimate.com/github/ntzm/useless-comment-finder)
 [![Test Coverage](https://codeclimate.com/github/ntzm/useless-comment-finder/badges/coverage.svg)](https://codeclimate.com/github/ntzm/useless-comment-finder/coverage)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/49381008-70dd-4a2e-8322-055fd08da84f/mini.png)](https://insight.sensiolabs.com/projects/49381008-70dd-4a2e-8322-055fd08da84f)
-[![Total Downloads](https://poser.pugx.org/phpunit/phpunit/downloads)](https://packagist.org/packages/phpunit/phpunit)
+[![Total Downloads](https://poser.pugx.org/ntzm/php-ucf/downloads)](https://packagist.org/packages/ntzm/php-ucf)
 
 ## Installation
 
