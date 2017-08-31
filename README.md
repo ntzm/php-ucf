@@ -13,4 +13,4 @@
 
 ## Usage
 
-`vendor\bin\php-ucf find <path>`
+`vendor/bin/php-ucf find <path>`
