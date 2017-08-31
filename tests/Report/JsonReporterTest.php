@@ -23,12 +23,12 @@ final class JsonReporterTest extends TestCase
             ),
         ];
 
-        $summary = new Summary($violations, 100, 200);
+        $summary = new Summary($violations, 100, 3145728);
 
         $expected = [
             'stats' => [
                 'time' => 100,
-                'memory' => 200,
+                'memory' => 3145728,
             ],
             'violations' => [
                 [

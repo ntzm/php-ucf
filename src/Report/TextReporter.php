@@ -17,6 +17,6 @@ final class TextReporter implements ReporterInterface
         $lines[] = "Time: {$summary->getTimeInSeconds()} seconds";
         $lines[] = "Memory: {$summary->getMemoryInMegabytes()} MB";
 
-        return implode(PHP_EOL, $lines);
+        return implode(PHP_EOL, $lines).PHP_EOL;
     }
 }
