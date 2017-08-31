@@ -2,6 +2,7 @@
 
 namespace Ntzm\PhpUcf\Console\Command;
 
+use Ntzm\PhpUcf\Classifier\AnnotationClassifier;
 use Ntzm\PhpUcf\Classifier\DocCommentClassifier;
 use Ntzm\PhpUcf\Classifier\EmptyCommentClassifier;
 use Ntzm\PhpUcf\Classifier\NoteClassifier;
@@ -47,6 +48,7 @@ final class FindCommand extends Command
 
         $classifiers = [
             DocCommentClassifier::class,
+            AnnotationClassifier::class,
             EmptyCommentClassifier::class,
             NoteClassifier::class,
             ShortCommentClassifier::class,
