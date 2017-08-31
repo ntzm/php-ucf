@@ -4,7 +4,7 @@ namespace Ntzm\PhpUcf\Classifier;
 
 use Ntzm\PhpUcf\Comment\Comment;
 
-final class NoteClassifier implements Classifier
+final class NoteClassifier implements ClassifierInterface
 {
     private const NOTE_PREFIXES = [
         'NOTE',

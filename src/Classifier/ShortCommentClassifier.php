@@ -4,7 +4,7 @@ namespace Ntzm\PhpUcf\Classifier;
 
 use Ntzm\PhpUcf\Comment\Comment;
 
-final class ShortCommentClassifier implements Classifier
+final class ShortCommentClassifier implements ClassifierInterface
 {
     private const MINIMUM_COMMENT_WORD_COUNT = 3;
 

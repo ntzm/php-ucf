@@ -4,7 +4,7 @@ namespace Ntzm\PhpUcf\Report;
 
 use Ntzm\PhpUcf\Violation;
 
-final class JsonReporter implements Reporter
+final class JsonReporter implements ReporterInterface
 {
     public function generate(Summary $summary): string
     {

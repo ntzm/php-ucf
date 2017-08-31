@@ -2,7 +2,7 @@
 
 namespace Ntzm\PhpUcf\Report;
 
-final class TextReporter implements Reporter
+final class TextReporter implements ReporterInterface
 {
     public function generate(Summary $summary): string
     {

@@ -4,7 +4,7 @@ namespace Ntzm\PhpUcf\Classifier;
 
 use Ntzm\PhpUcf\Comment\Comment;
 
-final class DocCommentClassifier implements Classifier
+final class DocCommentClassifier implements ClassifierInterface
 {
     public function isUseless(Comment $comment): ?bool
     {

@@ -76,7 +76,7 @@ final class FindCommand extends Command
 
         $reporterClass = self::REPORT_FORMAT_MAP[$format];
 
-        /** @var \Ntzm\PhpUcf\Report\Reporter $reporter */
+        /** @var \Ntzm\PhpUcf\Report\ReporterInterface $reporter */
         $reporter = new $reporterClass();
 
         $finder = new Finder();
