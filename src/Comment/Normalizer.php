@@ -22,7 +22,7 @@ final class Normalizer
                 return $this->normalizeDocComment($comment);
         }
 
-        throw new InvalidCommentException();
+        throw new InvalidCommentException(); // @codeCoverageIgnore
     }
 
     private function normalizeDocComment(string $comment): string
