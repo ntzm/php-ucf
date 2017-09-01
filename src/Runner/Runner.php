@@ -11,6 +11,10 @@ use Symfony\Component\Finder\SplFileInfo;
 
 final class Runner
 {
+    private $commentFinder;
+    private $commentNormalizer;
+    private $commentTypeDetector;
+
     public function __construct()
     {
         $this->commentFinder = new Finder();
