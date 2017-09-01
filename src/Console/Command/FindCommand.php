@@ -55,8 +55,7 @@ final class FindCommand extends Command
 
         $summary = new Summary(
             $violations,
-            $event->getDuration(),
-            $event->getMemory()
+            $event
         );
 
         $output->write($reporter->generate($summary));

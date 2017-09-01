@@ -2,17 +2,17 @@
 
 namespace Ntzm\PhpUcf\Report;
 
+use Symfony\Component\Stopwatch\StopwatchEvent;
+
 final class Summary
 {
     private $violations;
-    private $timeInMilliseconds;
-    private $memoryInBytes;
+    private $event;
 
-    public function __construct(array $violations, int $timeInMilliseconds, int $memoryInBytes)
+    public function __construct(array $violations, StopwatchEvent $event)
     {
         $this->violations = $violations;
-        $this->timeInMilliseconds = $timeInMilliseconds;
-        $this->memoryInBytes = $memoryInBytes;
+        $this->event = $event;
     }
 
     public function getViolations(): array
@@ -22,21 +22,21 @@ final class Summary
 
     public function getTimeInMilliseconds(): int
     {
-        return $this->timeInMilliseconds;
+        return $this->event->getDuration();
     }
 
     public function getTimeInSeconds(): float
     {
-        return $this->timeInMilliseconds / 1000;
+        return $this->event->getDuration() / 1000;
     }
 
     public function getMemoryInBytes(): int
     {
-        return $this->memoryInBytes;
+        return $this->event->getMemory();
     }
 
     public function getMemoryInMegabytes(): float
     {
-        return $this->memoryInBytes / 1024 / 1024;
+        return $this->event->getMemory() / 1024 / 1024;
     }
 }

@@ -8,6 +8,7 @@ use Ntzm\PhpUcf\Report\Summary;
 use Ntzm\PhpUcf\Violation;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\SplFileInfo;
+use Symfony\Component\Stopwatch\StopwatchEvent;
 
 final class JsonReporterTest extends TestCase
 {
@@ -23,7 +24,11 @@ final class JsonReporterTest extends TestCase
             ),
         ];
 
-        $summary = new Summary($violations, 100, 3145728);
+        $event = $this->createMock(StopwatchEvent::class);
+        $event->method('getDuration')->willReturn(100);
+        $event->method('getMemory')->willReturn(3145728);
+
+        $summary = new Summary($violations, $event);
 
         $expected = [
             'stats' => [
